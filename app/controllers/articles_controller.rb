@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def new
-		@article = Article.new
+		@article = current_user.articles.build
 	end
 
 	def show
@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def create
-		@article = Article.new(article_param)
+		@article = current_user.articles.build(article_param)
 		if @article.save
 			redirect_to @article
 		else
