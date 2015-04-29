@@ -19,6 +19,22 @@ class ArticlesController < ApplicationController
 
 	end
 
+	def edit
+	end
+
+	def update
+		if @article.update(article_param)
+			redirect_to @article
+		else
+			render "edit"
+		end
+	end
+
+	def destroy
+		@article.destroy
+		redirect_to root_path
+	end
+
 	def create
 		@article = current_user.articles.build(article_param)
 		if @article.save
